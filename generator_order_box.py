@@ -8,6 +8,26 @@ class OrderSizeException(Exception):
 
 
 class GeneratorOrderBox:
+    """
+    A class used to generate number of box need to handle a order
+
+    Attributes
+    ----------
+    quantity : int
+        Number of ordered products
+    order_boxes : Dict[str, int]
+        number of boxes need to send order
+
+    Methods
+    -------
+    __check_quanity__(quantity: int = None)
+        Checking that the quantity of products is allowed to be packed
+    __get_box_multiply__() -> int
+        Returns information with the number of collective cartons
+    get_box_quantity(self, quantity: int) -> Dict[str, int]
+        The method returns the number of boxes needed for packing based on the quantity of products ordered.
+    """
+
     quantity: int = None
     order_boxes: Dict[str, int] = {
         'large_box': 0,
@@ -35,7 +55,7 @@ class GeneratorOrderBox:
             return 0
         return int(box_quantity / 4) + 1
 
-    def get_box_quantity(self, quantity: int):
+    def get_box_quantity(self, quantity: int) -> Dict[str, int]:
         self.__check_quanity__(quantity)
         check = True
         first_run = True
